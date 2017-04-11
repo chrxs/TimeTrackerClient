@@ -8,6 +8,8 @@ import {
 
 import AuthenticationService from '../../services/AuthenticationService'
 
+import styles from './ApplicationLayout.scss'
+
 const SignOutButton = withRouter(({ history }) => (
   <button
     type='button'
@@ -27,7 +29,7 @@ const ApplicationLayout = ({component: Component, ...rest}) => {
   }
   return (
     <Route {...rest} render={matchProps => (
-      <div className='application-layout'>
+      <div className={styles.applicationLayout}>
         <header>
           <h1>APPLICATION LAYOUT</h1>
           <nav>

@@ -19,7 +19,10 @@ module.exports = env => {
       pathinfo: ifNotProd()
     },
     resolve: {
-      extensions: ['.js', '.scss']
+      extensions: ['.js', '.scss'],
+      alias: {
+        config: resolve(__dirname, ifProd('./.env.production.js', './.env.js'))
+      }
     },
     stats: {
       colors: true,

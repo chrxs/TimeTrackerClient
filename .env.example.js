@@ -4,4 +4,4 @@ const Config = {
   API_END_POINT
 }
 
-export default Config;
+export default Config

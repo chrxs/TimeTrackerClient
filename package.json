@@ -14,8 +14,12 @@
     "dev": "webpack-dev-server --env.dev",
     "validate": "npm-run-all --parallel lint build test",
     "setup": "npm install && npm run validate",
-    "lint": "standard src/**/*.js"
+    "lint": "eslint src/*.js src/**/*.js",
+    "lint:fix": "npm run lint -- --fix"
   },
+  "pre-commit": [
+    "lint"
+  ],
   "devDependencies": {
     "babel-core": "^6.24.0",
     "babel-loader": "^6.4.1",
@@ -41,6 +45,7 @@
     "npm-run-all": "^4.0.2",
     "offline-plugin": "^4.6.2",
     "postcss-loader": "^1.3.3",
+    "pre-commit": "^1.2.2",
     "progress-bar-webpack-plugin": "^1.9.3",
     "rimraf": "^2.6.1",
     "sass-loader": "^6.0.3",

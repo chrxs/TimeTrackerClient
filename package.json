@@ -14,7 +14,7 @@
     "dev": "webpack-dev-server --env.dev",
     "validate": "npm-run-all --parallel lint build test",
     "setup": "npm install && npm run validate",
-    "lint": "eslint src/*.js src/**/*.js",
+    "lint": "eslint 'src/**/*.js'",
     "lint:fix": "npm run lint -- --fix"
   },
   "pre-commit": [
@@ -57,6 +57,7 @@
   "dependencies": {
     "lodash": "^4.17.4",
     "normalize.css": "^6.0.0",
+    "prop-types": "^15.5.8",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.3",

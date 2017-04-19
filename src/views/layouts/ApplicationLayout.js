@@ -9,6 +9,7 @@ import {
 import { connect } from 'react-redux'
 
 import { signOut } from '../../state/currentUser/actionCreators'
+import { isAuthenticated } from '../../state/currentUser/reducer'
 import styles from './ApplicationLayout.scss'
 
 const ApplicationLayout = ({
@@ -68,7 +69,7 @@ ApplicationLayout.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    isAuthenticated: state.currentUser.isAuthenticated
+    isAuthenticated: isAuthenticated()
   }
 }
 

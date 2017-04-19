@@ -3,28 +3,26 @@ import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { signIn } from '../state/currentUser/actionCreators'
+import * as currentUserActions from '../state/currentUser/actionCreators'
+import Button from '../components/Button'
 import styles from './SignInView.scss'
 
-let SignInView = ({
+const SignInView = ({
   history,
-  dispatch
+  isLoading,
+  signInViaGoogle
 }) => {
   function handleOnClick () {
-    dispatch(signIn()).then(() => {
-      history.push('/')
-    })
+    signInViaGoogle().then(() => history.push('/'))
   }
 
   return (
     <div className={styles.SignInView}>
-      <button
-        type='button'
+      <Button
+        label='Sign In with Google'
         onClick={handleOnClick}
-        className='btn-google-signin'
-      >
-        Sign In with Google
-      </button>
+        disabled={isLoading}
+      />
     </div>
   )
 }
@@ -33,9 +31,27 @@ SignInView.displayName = 'SignInView'
 
 SignInView.propTypes = {
   history: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired
+  isLoading: PropTypes.bool.isRequired,
+  signInViaGoogle: PropTypes.func.isRequired
 }
 
-SignInView = withRouter(SignInView)
+const mapStateToProps = (state) => {
+  return {
+    isLoading: state.currentUser.isLoading
+  }
+}
 
-export default connect()(SignInView)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signInViaGoogle () {
+      return dispatch(currentUserActions.signInViaGoogle())
+    }
+  }
+}
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(SignInView)
+)

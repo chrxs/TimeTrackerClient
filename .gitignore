@@ -1,4 +1,5 @@
 node_modules
 dist
-.env
+.env.js
+.env.production.js
 npm-debug.log

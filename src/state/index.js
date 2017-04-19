@@ -1,5 +1,6 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction'
 
 import currentUser from './currentUser'
 const { currentUserReducer } = currentUser
@@ -16,11 +17,13 @@ export const actionCreators = {
   ...currentUser.actionCreators
 }
 
+const composeEnhancers = composeWithDevTools({})
+
 export const store = createStore(
-  combineReducers(
-    reducers
-  ),
-  applyMiddleware(thunk)
+  combineReducers(reducers),
+  composeEnhancers(
+    applyMiddleware(thunk)
+  )
 )
 
 const state = {

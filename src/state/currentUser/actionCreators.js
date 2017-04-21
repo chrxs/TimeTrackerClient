@@ -5,7 +5,10 @@ import {
   SIGN_IN_SUCCESS,
   SIGN_IN_FAILED,
   SIGN_OUT_BEGIN,
-  SIGN_OUT_SUCCESS
+  SIGN_OUT_SUCCESS,
+  FETCH_CURRENT_USER_BEGIN,
+  FETCH_CURRENT_USER_SUCCESS,
+  FETCH_CURRENT_USER_FAILED
 } from './actions.js'
 
 import { GOOGLE_CLIENT_ID } from 'config'
@@ -28,14 +31,9 @@ export function signInViaGoogle () {
           'X-Requested-With': 'XMLHttpRequest'
         }
       })
-    }).then((user) => {
-      dispatch({
-        type: SIGN_IN_SUCCESS,
-        user
-      })
-    }).catch(() => {
-      dispatch({ type: SIGN_IN_FAILED })
     })
+    .then((user) => { dispatch({ type: SIGN_IN_SUCCESS, user }) })
+    .catch(() => { dispatch({ type: SIGN_IN_FAILED }) })
   }
 }
 
@@ -48,5 +46,14 @@ export function signOut () {
         resolve()
       }, 1000)
     })
+  }
+}
+
+export function fetchCurrentUser () {
+  return (dispatch) => {
+    dispatch({ type: FETCH_CURRENT_USER_BEGIN })
+    return fetch('/api/v1/myself')
+      .then((user) => { dispatch({ type: FETCH_CURRENT_USER_SUCCESS, user }) })
+      .catch(() => { dispatch({ type: FETCH_CURRENT_USER_FAILED }) })
   }
 }

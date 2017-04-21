@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import * as currentUserActions from '../state/currentUser/actionCreators'
-import Button from '../components/Button'
+import GoogleSignInButton from '../components/GoogleSignInButton'
 import styles from './SignInView.scss'
 
 const SignInView = ({
@@ -18,8 +18,7 @@ const SignInView = ({
 
   return (
     <div className={styles.SignInView}>
-      <Button
-        label='Sign In with Google'
+      <GoogleSignInButton
         onClick={handleOnClick}
         disabled={isLoading}
       />

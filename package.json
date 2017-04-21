@@ -16,7 +16,8 @@
     "setup": "npm install && npm run validate",
     "lint": "eslint 'src/**/*.js'",
     "lint:fix": "npm run lint -- --fix",
-    "test": "NODE_ENV=test jest"
+    "test": "NODE_ENV=test jest",
+    "coverage": "NODE_ENV=test jest --coverage"
   },
   "pre-commit": [
     "lint",

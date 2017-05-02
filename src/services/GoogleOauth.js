@@ -36,7 +36,7 @@ const GoogleOAuth = {
       client_id: clientId,
       scope: 'profile email',
       fetch_basic_profile: true,
-      prompt: 'none',
+      prompt: 'select_account',
       ux_mode: 'popup',
       ...rest
     }

@@ -2,8 +2,8 @@ import 'whatwg-fetch'
 import snakeCaseKeys from 'snakecase-keys'
 import camelcaseKeys from 'camelcase-keys'
 
-import { store } from '../state'
-import { signOut } from '../state/currentUser/actionCreators'
+import { store } from 'state'
+import { signOut } from 'state/currentUser/actionCreators'
 import { API_END_POINT } from 'config'
 
 const JSON_CONTENT_TYPE = 'application/json; charset=utf-8'

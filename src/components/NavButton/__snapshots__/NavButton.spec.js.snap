@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavButton snapshots with "to" prop 1`] = `
+<a
+  className="NavButton"
+  href="/somewhere"
+  onClick={[Function]}
+  style={undefined}
+>
+  <div
+    className="icon"
+  />
+  <div
+    className="label"
+  >
+    going somewhere
+  </div>
+</a>
+`;
+
+exports[`NavButton snapshots without "to" prop 1`] = `
+<button
+  className="NavButton"
+  onClick={[Function]}
+  type="button"
+>
+  <div
+    className="icon"
+  />
+  <div
+    className="label"
+  >
+    
+  </div>
+</button>
+`;

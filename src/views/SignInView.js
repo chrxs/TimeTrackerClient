@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import * as currentUserActions from '../state/currentUser/actionCreators'
-import GoogleSignInButton from '../components/GoogleSignInButton'
+import * as currentUserActions from 'state/currentUser/actionCreators'
+import GoogleSignInButton from 'components/GoogleSignInButton'
 import styles from './SignInView.scss'
 
 const SignInView = ({

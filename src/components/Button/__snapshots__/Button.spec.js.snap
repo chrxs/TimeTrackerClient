@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button snapshots with all props 1`] = `
+<button
+  className="Button"
+  disabled={false}
+  onClick={[Function]}
+  type="button"
+>
+  Do everything
+</button>
+`;
+
+exports[`Button snapshots with just label prop 1`] = `
+<button
+  className="Button"
+  disabled={false}
+  onClick={[Function]}
+  type="button"
+>
+  Do Something
+</button>
+`;

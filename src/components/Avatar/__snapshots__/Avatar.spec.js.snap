@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Avatar snapshots with imageUrl prop 1`] = `
+<div
+  style={
+    Object {
+      "backgroundColor": "#ccc",
+      "backgroundImage": "url(http://image.jpg)",
+      "backgroundPosition": "50% 50%",
+      "backgroundRepeat": "no-repeat",
+      "backgroundSize": "cover",
+      "borderRadius": "1000px",
+      "height": "50px",
+      "margin": "0 auto",
+      "overflow": "hidden",
+      "width": "50px",
+    }
+  }
+/>
+`;
+
+exports[`Avatar snapshots with no props 1`] = `
+<div
+  style={
+    Object {
+      "backgroundColor": "#ccc",
+      "backgroundImage": "url(undefined)",
+      "backgroundPosition": "50% 50%",
+      "backgroundRepeat": "no-repeat",
+      "backgroundSize": "cover",
+      "borderRadius": "1000px",
+      "height": "50px",
+      "margin": "0 auto",
+      "overflow": "hidden",
+      "width": "50px",
+    }
+  }
+/>
+`;

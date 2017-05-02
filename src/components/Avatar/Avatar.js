@@ -23,8 +23,9 @@ const avatarStyle = {
   backgroundSize: 'cover',
   borderRadius: '1000px',
   overflow: 'hidden',
-  width: '48px',
-  height: '48px'
+  margin: '0 auto',
+  width: '50px',
+  height: '50px'
 }
 
 Avatar.displayName = 'Avatar'

@@ -1,0 +1,24 @@
+.DateHeader {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px;
+  height: 60px;
+}
+
+.DateHeaderTitle {
+  margin: 0;
+  padding: 0;
+  font-size: 22px;
+  font-weight: 200;
+}
+
+.Link {
+  border: solid 2px #ccc;
+  border-radius: 1000px;
+  box-sizing: border-box;
+  height: 60px;
+  width: 60px;
+}

@@ -16,12 +16,17 @@ module.exports = env => {
     output: {
       filename: ifProd('bundle.[name].[chunkhash].js', 'bundle.[name].js'),
       path: resolve('dist'),
-      pathinfo: ifNotProd()
+      pathinfo: ifNotProd(),
+      publicPath: '/'
     },
     resolve: {
       extensions: ['.js', '.scss'],
       alias: {
-        config: resolve(__dirname, ifProd('./.env.production.js', './.env.js'))
+        config: resolve(__dirname, ifProd('.env.production.js', '.env.js')),
+        components: resolve(__dirname, 'src/components'),
+        services: resolve(__dirname, 'src/services'),
+        state: resolve(__dirname, 'src/state'),
+        views: resolve(__dirname, 'src/views')
       }
     },
     stats: {

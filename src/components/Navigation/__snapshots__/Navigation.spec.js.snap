@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navigation Navigation snapshot 1`] = `
+<nav
+  className="Navigation"
+>
+  <ul>
+    <li>
+      <div
+        className="NavButtons"
+      >
+        <div
+          style={
+            Object {
+              "backgroundColor": "#ccc",
+              "backgroundImage": "url(http://www.image.jpg)",
+              "backgroundPosition": "50% 50%",
+              "backgroundRepeat": "no-repeat",
+              "backgroundSize": "cover",
+              "borderRadius": "1000px",
+              "height": "50px",
+              "margin": "0 auto",
+              "overflow": "hidden",
+              "width": "50px",
+            }
+          }
+        />
+        <div
+          className="label"
+        >
+          HARRY
+        </div>
+      </div>
+    </li>
+    <li>
+      <a
+        className="NavButton"
+        href="/"
+        onClick={[Function]}
+        style={undefined}
+      >
+        <div
+          className="icon"
+        />
+        <div
+          className="label"
+        >
+          MY TIME
+        </div>
+      </a>
+    </li>
+    <li>
+      <a
+        className="NavButton"
+        href="/people"
+        onClick={[Function]}
+        style={undefined}
+      >
+        <div
+          className="icon"
+        />
+        <div
+          className="label"
+        >
+          PEOPLE
+        </div>
+      </a>
+    </li>
+    <li>
+      <a
+        className="NavButton"
+        href="/projects"
+        onClick={[Function]}
+        style={undefined}
+      >
+        <div
+          className="icon"
+        />
+        <div
+          className="label"
+        >
+          PROJECTS
+        </div>
+      </a>
+    </li>
+    <li>
+      <button
+        className="NavButton"
+        onClick={[Function]}
+        type="button"
+      >
+        <div
+          className="icon"
+        />
+        <div
+          className="label"
+        >
+          SIGN OUT
+        </div>
+      </button>
+    </li>
+  </ul>
+</nav>
+`;

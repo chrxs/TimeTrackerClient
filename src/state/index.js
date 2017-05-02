@@ -5,9 +5,9 @@ import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProductio
 import currentUser from './currentUser'
 const { currentUserReducer } = currentUser
 
-export const reducers = {
+export const reducers = combineReducers({
   currentUser: currentUserReducer
-}
+})
 
 export const actions = {
   ...currentUser.actions
@@ -20,7 +20,7 @@ export const actionCreators = {
 const composeEnhancers = composeWithDevTools({})
 
 export const store = createStore(
-  combineReducers(reducers),
+  reducers,
   composeEnhancers(
     applyMiddleware(thunk)
   )

@@ -6,14 +6,16 @@ import PropTypes from 'prop-types'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider, connect } from 'react-redux'
 
-import LoadingSpinner from './components/LoadingSpinner'
-import ApplicationLayout from './views/layouts/ApplicationLayout'
-import AuthenticationLayout from './views/layouts/AuthenticationLayout'
-import HomeView from './views/HomeView'
-import SignInView from './views/SignInView'
-import { store } from './state'
-import { isAuthenticated } from './state/currentUser/reducer'
-import { fetchCurrentUser } from './state/currentUser/actionCreators'
+import LoadingSpinner from 'components/LoadingSpinner'
+import ApplicationLayout from 'views/layouts/ApplicationLayout'
+import AuthenticationLayout from 'views/layouts/AuthenticationLayout'
+import DayView from 'views/DayView'
+import MonthView from 'views/MonthView'
+import YearView from 'views/YearView'
+import SignInView from 'views/SignInView'
+import { store } from 'state'
+import { isAuthenticated } from 'state/currentUser/reducer'
+import { fetchCurrentUser } from 'state/currentUser/actionCreators'
 
 class AppRoutes extends React.Component {
   constructor (props) {
@@ -43,7 +45,10 @@ class AppRoutes extends React.Component {
     return (
       <BrowserRouter>
         <div>
-          <ApplicationLayout exact path='/' component={HomeView} />
+          <ApplicationLayout exact path='/' component={DayView} />
+          <ApplicationLayout exact path='/:year/:month/:day' component={DayView} />
+          <ApplicationLayout exact path='/:year/:month' component={MonthView} />
+          <ApplicationLayout exact path='/:year' component={YearView} />
           <AuthenticationLayout path='/signin' component={SignInView} />
         </div>
       </BrowserRouter>

@@ -3,7 +3,7 @@ import './App.scss'
 import 'babel-polyfill'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Switch } from 'react-router-dom'
 import { Provider, connect } from 'react-redux'
 
 import LoadingSpinner from 'components/LoadingSpinner'
@@ -44,13 +44,13 @@ class AppRoutes extends React.Component {
     }
     return (
       <BrowserRouter>
-        <div>
-          <ApplicationLayout exact path='/' component={DayView} />
+        <Switch>
+          <AuthenticationLayout exact path='/signin' component={SignInView} />
           <ApplicationLayout exact path='/:year/:month/:day' component={DayView} />
           <ApplicationLayout exact path='/:year/:month' component={MonthView} />
           <ApplicationLayout exact path='/:year' component={YearView} />
-          <AuthenticationLayout path='/signin' component={SignInView} />
-        </div>
+          <ApplicationLayout exact path='/' component={DayView} />
+        </Switch>
       </BrowserRouter>
     )
   }

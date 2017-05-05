@@ -1,0 +1,44 @@
+@import '../../variables';
+
+.SlackSignInButton {
+  background-color: $brand-primary-color;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  height: 40px;
+  width: 172px;
+
+  &:after {
+    background: #fff url('./images/sign_in_with_slack@2x.png') 50% 50% no-repeat;
+    background-size: contain;
+    position: absolute;
+    content: '';
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 3px rgba(0,0,0,.3);
+  }
+
+  &:active {
+    box-shadow: none;
+    &:after {
+      opacity: .7;
+    }
+  }
+
+  &[disabled] {
+    background-color: #ccc;
+    box-shadow: none;
+    cursor: disabled;
+    &:after {
+      opacity: .7;
+    }
+  }
+}

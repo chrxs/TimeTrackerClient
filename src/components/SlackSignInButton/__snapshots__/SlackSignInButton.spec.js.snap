@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SlackSignInButton snapshots with all props 1`] = `
+<div
+  className="SlackSignInButton"
+  disabled={false}
+  onClick={[Function]}
+/>
+`;
+
+exports[`SlackSignInButton snapshots with just label prop 1`] = `
+<div
+  className="SlackSignInButton"
+  disabled={false}
+  onClick={[Function]}
+/>
+`;

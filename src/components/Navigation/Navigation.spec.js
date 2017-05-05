@@ -2,7 +2,7 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 
-import { Unwrapped as Navigation } from './Navigation'
+import Navigation from './Navigation'
 import renderer from 'react-test-renderer'
 
 const currentUser = {

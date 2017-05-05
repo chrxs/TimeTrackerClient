@@ -1,7 +1,6 @@
 import 'whatwg-fetch'
-import snakeCaseKeys from 'snakecase-keys'
-import camelcaseKeys from 'camelcase-keys'
 
+import { camelCaseKeys, snakeCaseKeys } from 'utils'
 import { store } from 'state'
 import { signOut } from 'state/currentUser/actionCreators'
 import { API_END_POINT } from 'config'
@@ -32,7 +31,7 @@ function checkForAuthHeader (response) {
 }
 
 function parseJSON (response) {
-  return response.json().then(json => camelcaseKeys(json, { deep: true }))
+  return response.json().then(json => camelCaseKeys(json))
 }
 
 const fetchWrapper = (url, init = {}) => {
@@ -53,7 +52,11 @@ const fetchWrapper = (url, init = {}) => {
     init.body = JSON.stringify(init.body)
   }
 
-  return window.fetch(API_END_POINT + url, init)
+  if (url.indexOf('http') !== 0) {
+    url = API_END_POINT + url
+  }
+
+  return window.fetch(url, init)
     .then(checkStatus)
     .then(checkForAuthHeader)
     .then(parseJSON)

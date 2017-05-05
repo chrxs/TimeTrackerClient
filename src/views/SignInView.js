@@ -4,21 +4,21 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import * as currentUserActions from 'state/currentUser/actionCreators'
-import GoogleSignInButton from 'components/GoogleSignInButton'
+import SlackSignInButton from 'components/SlackSignInButton'
 import styles from './SignInView.scss'
 
 const SignInView = ({
   history,
   isLoading,
-  signInViaGoogle
+  signInViaSlack
 }) => {
   function handleOnClick () {
-    signInViaGoogle().then(() => history.push('/'))
+    signInViaSlack().then(() => history.push('/'))
   }
 
   return (
     <div className={styles.SignInView}>
-      <GoogleSignInButton
+      <SlackSignInButton
         onClick={handleOnClick}
         disabled={isLoading}
       />
@@ -31,7 +31,7 @@ SignInView.displayName = 'SignInView'
 SignInView.propTypes = {
   history: PropTypes.object.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  signInViaGoogle: PropTypes.func.isRequired
+  signInViaSlack: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => {
@@ -42,8 +42,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signInViaGoogle () {
-      return dispatch(currentUserActions.signInViaGoogle())
+    signInViaSlack () {
+      return dispatch(currentUserActions.signInViaSlack())
     }
   }
 }

@@ -1,4 +1,5 @@
-import fetch from '../../services/fetch'
+import fetch from 'services/fetch'
+import { SLACK_CLIENT_ID, SLACK_SCOPE, SLACK_REDIRECT_URI } from 'config'
 
 import {
   SIGN_IN_BEGIN,
@@ -11,29 +12,24 @@ import {
   FETCH_CURRENT_USER_FAILED
 } from './actions.js'
 
-import { GOOGLE_CLIENT_ID } from 'config'
-import GoogleOauth from '../../services/GoogleOauth'
-
-export function signInViaGoogle () {
+export function signInViaSlack () {
   return (dispatch) => {
     dispatch({ type: SIGN_IN_BEGIN })
-    return GoogleOauth.signIn(
-      GOOGLE_CLIENT_ID,
-      {
-        offline: true
+    const url = `https://slack.com/oauth/authorize?&client_id=${SLACK_CLIENT_ID}&scope=${SLACK_SCOPE}&redirect_uri=${SLACK_REDIRECT_URI}`
+    return new Promise((resolve, reject) => {
+      window.signInViaSlackCallback = (params) => {
+        fetch(`/api/v1/auth/slack?code=${params.code}&state=${params.state}&redirect_uri=${SLACK_REDIRECT_URI}`)
+          .then((user) => {
+            dispatch({ type: SIGN_IN_SUCCESS, user })
+            resolve()
+          })
+          .catch((error) => {
+            dispatch({ type: SIGN_IN_FAILED })
+            reject(error)
+          })
       }
-    ).then(({ code }) => {
-      return fetch('/users/auth/google_oauth2/callback', {
-        method: 'POST',
-        body: `code=${code}`,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-          'X-Requested-With': 'XMLHttpRequest'
-        }
-      })
+      window.open(url, 'SignInWindow', 'width=600,height=600')
     })
-    .then((user) => { dispatch({ type: SIGN_IN_SUCCESS, user }) })
-    .catch(() => { dispatch({ type: SIGN_IN_FAILED }) })
   }
 }
 

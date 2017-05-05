@@ -1,17 +1,18 @@
-const {resolve} = require('path')
+const { resolve } = require('path')
 const webpack = require('webpack')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const {getIfUtils, removeEmpty} = require('webpack-config-utils')
+const { getIfUtils, removeEmpty } = require('webpack-config-utils')
 
 module.exports = env => {
   const {ifProd, ifNotProd} = getIfUtils(env)
   const config = {
     context: resolve(__dirname, 'src'),
     entry: {
-      app: './index.js'
+      app: './index.js',
+      oauth: './oauth.js'
     },
     output: {
       filename: ifProd('bundle.[name].[chunkhash].js', 'bundle.[name].js'),
@@ -26,6 +27,7 @@ module.exports = env => {
         components: resolve(__dirname, 'src/components'),
         services: resolve(__dirname, 'src/services'),
         state: resolve(__dirname, 'src/state'),
+        utils: resolve(__dirname, 'src/utils'),
         views: resolve(__dirname, 'src/views')
       }
     },
@@ -115,7 +117,15 @@ module.exports = env => {
       })),
       new HtmlWebpackPlugin({
         title: 'TimeTracker',
-        template: './index.html'
+        chunks: ['app'],
+        template: './index.html',
+        filename: './index.html'
+      }),
+      new HtmlWebpackPlugin({
+        title: 'TimeTracker',
+        chunks: ['oauth'],
+        template: './oauth.html',
+        filename: './oauth.html'
       }),
       new webpack.DefinePlugin({
         'process.env': {

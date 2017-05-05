@@ -1,10 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withRouter } from 'react-router-dom'
-import { connect } from 'react-redux'
 
-import { getCurrentUser } from 'state/currentUser/reducer'
-import { signOut } from 'state/currentUser/actionCreators'
 import Avatar from 'components/Avatar'
 import NavButton from 'components/NavButton'
 import styles from './Navigation.scss'
@@ -48,32 +44,11 @@ Navigation.displayName = 'Navigation'
 
 Navigation.propTypes = {
   currentUser: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired
+    name: PropTypes.string,
+    image: PropTypes.string
   }).isRequired,
   history: PropTypes.object.isRequired,
   signOut: PropTypes.func.isRequired
 }
 
-const mapStateToProps = (state) => {
-  return {
-    currentUser: getCurrentUser(state)
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    signOut () {
-      return dispatch(signOut())
-    }
-  }
-}
-
-export const Unwrapped = Navigation
-
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Navigation)
-)
+export default Navigation

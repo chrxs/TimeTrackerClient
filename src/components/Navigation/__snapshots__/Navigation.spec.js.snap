@@ -6,33 +6,6 @@ exports[`Navigation Navigation snapshot 1`] = `
 >
   <ul>
     <li>
-      <div
-        className="NavButtons"
-      >
-        <div
-          style={
-            Object {
-              "backgroundColor": "#ccc",
-              "backgroundImage": "url(http://www.image.jpg)",
-              "backgroundPosition": "50% 50%",
-              "backgroundRepeat": "no-repeat",
-              "backgroundSize": "cover",
-              "borderRadius": "1000px",
-              "height": "50px",
-              "margin": "0 auto",
-              "overflow": "hidden",
-              "width": "50px",
-            }
-          }
-        />
-        <div
-          className="label"
-        >
-          HARRY
-        </div>
-      </div>
-    </li>
-    <li>
       <a
         className="NavButton"
         href="/"
@@ -84,20 +57,35 @@ exports[`Navigation Navigation snapshot 1`] = `
       </a>
     </li>
     <li>
-      <button
-        className="NavButton"
-        onClick={[Function]}
-        type="button"
+      <div
+        className="NavButtons"
       >
         <div
-          className="icon"
-        />
-        <div
-          className="label"
+          className="userMenu"
         >
-          SIGN OUT
+          <div
+            className="userMenuMenu"
+          >
+            <button
+              className="Button Block"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Sign out
+            </button>
+          </div>
+          <div
+            className="Avatar avatar"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundImage": "url(http://www.image.jpg)",
+              }
+            }
+          />
         </div>
-      </button>
+      </div>
     </li>
   </ul>
 </nav>

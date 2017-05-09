@@ -1,41 +1,37 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import styles from './Avatar.scss'
+
 const Avatar = ({
   imageUrl,
   style,
+  className,
   ...rest
 }) => {
   style = {
-    ...avatarStyle,
     backgroundImage: `url(${imageUrl})`,
     ...style
   }
+  const classNames = [styles.Avatar]
+  if (className) {
+    classNames.push(className)
+  }
   return (
-    <div style={style} {...rest} />
+    <div className={classNames.join(' ')} style={style} {...rest} />
   )
-}
-
-const avatarStyle = {
-  backgroundPosition: '50% 50%',
-  backgroundRepeat: 'no-repeat',
-  backgroundColor: '#ccc',
-  backgroundSize: 'cover',
-  borderRadius: '1000px',
-  overflow: 'hidden',
-  margin: '0 auto',
-  width: '50px',
-  height: '50px'
 }
 
 Avatar.displayName = 'Avatar'
 
 Avatar.propTypes = {
   imageUrl: PropTypes.string,
+  className: PropTypes.string,
   style: PropTypes.object
 }
 
 Avatar.defaultProps = {
+  imageUrl: 'default_image',
   style: {}
 }
 

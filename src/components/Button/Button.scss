@@ -1,7 +1,29 @@
+@import '../../variables';
+
 .Button {
-  background: #df4a32;
-  border: none;
-  border-radius: 3px;
+  background: transparent;
+  border: solid 1px #fff;
   color: #fff;
   cursor: pointer;
+  font-size: 14px;
+  padding: 10px;
+
+  &:hover {
+    background: rgba(255,255,255,.2);
+  }
+}
+
+.ButtonPrimary {
+  background-color: $brand-primary-color;
+  border: none;
+}
+
+.ButtonSecondary {
+  border-color: $brand-primary-color;
+  color: $brand-primary-color;
+}
+
+.Block {
+  display: block;
+  width: 100%;
 }

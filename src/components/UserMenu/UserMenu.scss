@@ -1,0 +1,68 @@
+.userMenu {
+  position: relative;
+}
+
+.userMenuMenu {
+  background: #333;
+  border: solid 2px #fff;
+  display: none;
+  position: absolute;
+  bottom: 100%;
+  right: 50%;
+  margin: 0 -30px 15px 0;
+  padding: 15px;
+  width: 120px;
+
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+  }
+
+  &:after {
+    border: solid 9px transparent;
+    border-bottom-width: 0;
+    border-top-color: #333;
+    bottom: -9px;
+    right: 18px;
+  }
+
+  &:before {
+    border: solid 12px transparent;
+    border-bottom-width: 0;
+    border-top-color: #fff;
+    bottom: -12px;
+    right: 15px;
+  }
+}
+
+.avatar {
+  border: solid 2px #fff;
+  cursor: pointer;
+  position: relative;
+}
+
+.isOpen {
+  .userMenuMenu {
+    display: block;
+  }
+
+  .avatar:after {
+    background: rgba(0,0,0,.5);
+    content: "×";
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 100%;
+    padding-bottom: 5px;
+  }
+}

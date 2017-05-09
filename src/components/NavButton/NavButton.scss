@@ -7,15 +7,15 @@
   align-items: center;
   text-decoration: none;
   width: 60px;
-  color: #000;
+  color: #fff;
 }
 
 .NavButtonSelected {
-  color: red;
+  font-weight: bold;
 }
 
 .icon {
-  border: solid 2px #ccc;
+  border: solid 2px #fff;
   border-radius: 100%;
   box-sizing: border-box;
   height: 50px;

@@ -1,28 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Avatar from 'components/Avatar'
 import NavButton from 'components/NavButton'
+import UserMenu from 'components/UserMenu'
 import styles from './Navigation.scss'
 
 const Navigation = ({
   currentUser,
-  signOut,
-  history
+  signOut
 }) => {
-  function handleOnClick () {
-    signOut().then(() => history.push('/'))
-  }
-
   return (
     <nav className={styles.Navigation}>
       <ul>
-        <li>
-          <div className={styles.NavButtons}>
-            <Avatar imageUrl={currentUser.image} />
-            <div className={styles.label}>{currentUser.name.toUpperCase()}</div>
-          </div>
-        </li>
         <li>
           <NavButton to='/' label='MY TIME' />
         </li>
@@ -33,7 +22,9 @@ const Navigation = ({
           <NavButton to='/projects' label='PROJECTS' />
         </li>
         <li>
-          <NavButton label='SIGN OUT' onClick={handleOnClick} />
+          <div className={styles.NavButtons}>
+            <UserMenu currentUser={currentUser} signOut={signOut} />
+          </div>
         </li>
       </ul>
     </nav>
@@ -47,7 +38,6 @@ Navigation.propTypes = {
     name: PropTypes.string,
     image: PropTypes.string
   }).isRequired,
-  history: PropTypes.object.isRequired,
   signOut: PropTypes.func.isRequired
 }
 

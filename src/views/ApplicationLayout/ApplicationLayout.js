@@ -63,22 +63,24 @@ class ApplicationLayout extends React.Component {
     }
 
     return (
-      <div className={styles.ApplicationLayout}>
-        <Switch>
-          <Route exact path='/projects/new' component={ProjectsNewView} />
-          <Route exact path='/projects/:id/edit' component={ProjectsEditView} />
-          <Route exact path='/projects/:id' component={ProjectsShowView} />
-          <Route exact path='/projects' component={ProjectsIndexView} />
+      <div className={styles.applicationLayout}>
+        <div className={styles.applicationLayoutInner}>
+          <Switch>
+            <Route exact path='/projects/new' component={ProjectsNewView} />
+            <Route exact path='/projects/:id/edit' component={ProjectsEditView} />
+            <Route exact path='/projects/:id' component={ProjectsShowView} />
+            <Route exact path='/projects' component={ProjectsIndexView} />
 
-          <Route exact path='/:year/:month/:day' component={DayView} />
-          <Route exact path='/:year/:month' component={MonthView} />
-          <Route exact path='/:year' component={YearView} />
-          <Route exact path='/' component={DayView} />
-        </Switch>
-
+            <Route exact path='/:year/:month/:day' component={DayView} />
+            <Route exact path='/:year/:month' component={MonthView} />
+            <Route exact path='/:year' component={YearView} />
+            <Route exact path='/' component={DayView} />
+          </Switch>
+        </div>
         <Navigation
           currentUser={currentUser}
           signOut={this.doSignOut}
+          className={styles.navigation}
         />
       </div>
     )

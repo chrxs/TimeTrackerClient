@@ -14,6 +14,8 @@ import DateHeader from 'components/DateHeader'
 import TimeRecordsList from 'components/TimeRecordsList'
 import TimeRecordsForm from 'components/TimeRecordsForm'
 
+import styles from './DayView.scss'
+
 class DayView extends React.Component {
   constructor (props) {
     super(props)
@@ -81,13 +83,15 @@ class DayView extends React.Component {
   render () {
     const [year, month, dayOfMonth] = this.props.date.split('-')
     return (
-      <div>
+      <div className={styles.DayView}>
         <DateHeader
           year={year}
           month={month}
           day={dayOfMonth}
         />
-        { this.renderMain() }
+        <main className={styles.main}>
+          { this.renderMain() }
+        </main>
       </div>
     )
   }

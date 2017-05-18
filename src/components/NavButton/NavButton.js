@@ -2,35 +2,43 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 
-import styles from './NavButton.scss'
+import cssClasses from './NavButton.scss'
 
 const NavButton = ({
   to,
   exact,
   label,
+  icon,
   onClick
 }) => {
+  const style = {
+    backgroundImage: `url(${icon})`
+  }
+
+  const content = [
+    <div key='icon' className={cssClasses.icon} style={style} />,
+    <div key='label' className={cssClasses.label}>{ label }</div>
+  ]
+
   if (to) {
     return (
       <NavLink
         to={to}
-        className={styles.NavButton}
-        activeClassName={styles.NavButtonSelected}
+        className={cssClasses.NavButton}
+        activeClassName={cssClasses.NavButtonSelected}
         exact={exact}
       >
-        <div className={styles.icon} />
-        <div className={styles.label}>{ label }</div>
+        { content }
       </NavLink>
     )
   }
   return (
     <button
       type='button'
-      className={styles.NavButton}
+      className={cssClasses.NavButton}
       onClick={onClick}
     >
-      <div className={styles.icon} />
-      <div className={styles.label}>{ label }</div>
+      { content }
     </button>
   )
 }
@@ -41,11 +49,13 @@ NavButton.propTypes = {
   to: PropTypes.string,
   exact: PropTypes.bool,
   label: PropTypes.string,
+  icon: PropTypes.string,
   onClick: PropTypes.func
 }
 
 NavButton.defaultProps = {
   label: '',
+  icon: '',
   exact: true,
   onClick: () => {}
 }

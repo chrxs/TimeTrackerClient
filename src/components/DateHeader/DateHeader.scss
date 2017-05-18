@@ -8,6 +8,9 @@
   padding: 15px;
   height: 40px;
   border-bottom: solid 1px #666;
+
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 .DateHeaderTitle {

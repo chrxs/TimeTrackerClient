@@ -9,6 +9,11 @@ exports[`NavButton snapshots with "to" prop 1`] = `
 >
   <div
     className="icon"
+    style={
+      Object {
+        "backgroundImage": "url()",
+      }
+    }
   />
   <div
     className="label"
@@ -26,6 +31,11 @@ exports[`NavButton snapshots without "to" prop 1`] = `
 >
   <div
     className="icon"
+    style={
+      Object {
+        "backgroundImage": "url()",
+      }
+    }
   />
   <div
     className="label"

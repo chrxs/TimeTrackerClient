@@ -5,8 +5,7 @@ import {
   SIGN_OUT_SUCCESS,
   CURRENT_USER_FETCH_BEGIN,
   CURRENT_USER_FETCH_SUCCESS,
-  CURRENT_USER_FETCH_FAILED,
-  CURRENT_USER_SET_IS_AUTHENTICATED
+  CURRENT_USER_FETCH_FAILED
 } from './actions'
 
 const initialState = {
@@ -49,11 +48,6 @@ function currentUserReducer (state = initialState, action) {
       }
     case SIGN_OUT_SUCCESS:
       return signOutSuccess(state)
-    case CURRENT_USER_SET_IS_AUTHENTICATED:
-      return {
-        ...state,
-        isAuthenticated: action.isAuthenticated
-      }
     default:
       return state
   }

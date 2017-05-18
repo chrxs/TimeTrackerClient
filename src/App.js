@@ -1,6 +1,8 @@
 import 'normalize.css'
+import 'font-awesome/css/font-awesome.css'
 import './App.scss'
 import 'babel-polyfill'
+
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'

@@ -6,6 +6,8 @@ import { connect } from 'react-redux'
 import { getProjects } from 'state/projects/reducer'
 import { fetchAllProjects } from 'state/projects/actionCreators'
 
+import Header from 'components/Header'
+
 class ProjectsIndexView extends React.Component {
   componentDidMount () {
     this.props.fetchAllProjects()
@@ -14,7 +16,7 @@ class ProjectsIndexView extends React.Component {
   render () {
     return (
       <div>
-        <h1>ProjectsIndexView</h1>
+        <Header title='Projects' />
         <Link to='/projects/new'>New Project</Link>
         <ol>
           {this.props.projects.map(({ id, name }) => (

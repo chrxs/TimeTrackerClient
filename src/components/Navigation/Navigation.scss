@@ -2,8 +2,9 @@
 
 .Navigation {
   background-color: $brand-primary-color;
+  box-sizing: border-box;
   margin: 0;
-  padding: 15px 10px;
+  padding: 0;
   color: #fff;
 
   ul {
@@ -17,11 +18,13 @@
   }
 
   li {
-    margin: 0 14px;
+    margin: 0;
     padding: 0;
   }
 
   li:last-child {
     margin-left: auto;
+    margin-top: 15px;
+    margin-right: 15px;
   }
 }

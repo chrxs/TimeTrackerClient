@@ -3,9 +3,11 @@ import PropTypes from 'prop-types'
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import LoadingSpinner from 'components/LoadingSpinner'
 import { fetchProject } from 'state/projects/actionCreators'
 import { getProject } from 'state/projects/reducer'
+
+import Header from 'components/Header'
+import LoadingSpinner from 'components/LoadingSpinner'
 
 class ProjectsShowView extends React.Component {
   constructor (props) {
@@ -38,7 +40,7 @@ class ProjectsShowView extends React.Component {
 
     return (
       <div>
-        <h1>{project.name}</h1>
+        <Header title={project.name} />
         <Link to={`/projects/${project.id}/edit`}>Edit</Link>
         <Link to='/projects'>Back</Link>
       </div>

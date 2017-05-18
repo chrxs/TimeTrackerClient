@@ -105,6 +105,10 @@ module.exports = env => {
               }
             }
           ]
+        },
+        {
+          test: /\.(eot|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/,
+          use: 'url-loader'
         }
       ]
     },

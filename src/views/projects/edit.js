@@ -3,9 +3,11 @@ import PropTypes from 'prop-types'
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import LoadingSpinner from 'components/LoadingSpinner'
 import { fetchProject, updateProject } from 'state/projects/actionCreators'
 import { getProject } from 'state/projects/reducer'
+
+import Header from 'components/Header'
+import LoadingSpinner from 'components/LoadingSpinner'
 
 class ProjectsEditView extends React.Component {
   constructor (props) {
@@ -62,9 +64,10 @@ class ProjectsEditView extends React.Component {
         centered
       />
     }
+
     return (
       <div>
-        <h1>ProjectsEditView</h1>
+        <Header title={`Edit ${project.name}`} />
         { isSaving && <p>Saving...</p>}
         <form onSubmit={this.handleOnSubmit}>
           <input

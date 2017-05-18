@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 
 import { createProject } from 'state/projects/actionCreators'
 
+import Header from 'components/Header'
+
 class ProjectsNewView extends React.Component {
   constructor (props) {
     super(props)
@@ -40,7 +42,7 @@ class ProjectsNewView extends React.Component {
   render () {
     return (
       <div>
-        <h1>ProjectsNewView</h1>
+        <Header title='New Project' />
         { this.state.isSaving && <p>Saving...</p>}
         <form onSubmit={this.handleOnSubmit}>
           <input

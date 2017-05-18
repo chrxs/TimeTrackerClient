@@ -11,14 +11,14 @@ const NavButton = ({
   icon,
   onClick
 }) => {
-  const style = {
-    backgroundImage: `url(${icon})`
-  }
-
-  const content = [
-    <div key='icon' className={cssClasses.icon} style={style} />,
-    <div key='label' className={cssClasses.label}>{ label }</div>
-  ]
+  const content = (
+    <div>
+      <div className={cssClasses.icon}>
+        <i className={`fa fa-${icon}`} />
+      </div>
+      <div className={cssClasses.label}>{ label }</div>
+    </div>
+  )
 
   if (to) {
     return (

@@ -7,18 +7,19 @@ exports[`NavButton snapshots with "to" prop 1`] = `
   onClick={[Function]}
   style={undefined}
 >
-  <div
-    className="icon"
-    style={
-      Object {
-        "backgroundImage": "url()",
-      }
-    }
-  />
-  <div
-    className="label"
-  >
-    going somewhere
+  <div>
+    <div
+      className="icon"
+    >
+      <i
+        className="fa fa-"
+      />
+    </div>
+    <div
+      className="label"
+    >
+      going somewhere
+    </div>
   </div>
 </a>
 `;
@@ -29,18 +30,19 @@ exports[`NavButton snapshots without "to" prop 1`] = `
   onClick={[Function]}
   type="button"
 >
-  <div
-    className="icon"
-    style={
-      Object {
-        "backgroundImage": "url()",
-      }
-    }
-  />
-  <div
-    className="label"
-  >
-    
+  <div>
+    <div
+      className="icon"
+    >
+      <i
+        className="fa fa-"
+      />
+    </div>
+    <div
+      className="label"
+    >
+      
+    </div>
   </div>
 </button>
 `;

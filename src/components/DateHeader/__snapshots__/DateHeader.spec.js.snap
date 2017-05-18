@@ -5,24 +5,20 @@ exports[`DateHeader snapshots with year and month props 1`] = `
   className="DateHeader"
 >
   <a
-    className="Link"
+    className="Link previous"
     href="/2017/03"
     onClick={[Function]}
-  >
-    prev
-  </a>
+  />
   <h1
     className="DateHeaderTitle"
   >
     April 2017
   </h1>
   <a
-    className="Link"
+    className="Link next"
     href="/2017/05"
     onClick={[Function]}
-  >
-    next
-  </a>
+  />
 </header>
 `;
 
@@ -31,24 +27,20 @@ exports[`DateHeader snapshots with year prop 1`] = `
   className="DateHeader"
 >
   <a
-    className="Link"
+    className="Link previous"
     href="/2016"
     onClick={[Function]}
-  >
-    prev
-  </a>
+  />
   <h1
     className="DateHeaderTitle"
   >
     2017
   </h1>
   <a
-    className="Link"
+    className="Link next"
     href="/2018"
     onClick={[Function]}
-  >
-    next
-  </a>
+  />
 </header>
 `;
 
@@ -57,23 +49,19 @@ exports[`DateHeader snapshots with year, month and day props 1`] = `
   className="DateHeader"
 >
   <a
-    className="Link"
+    className="Link previous"
     href="/2017/04/20"
     onClick={[Function]}
-  >
-    prev
-  </a>
+  />
   <h1
     className="DateHeaderTitle"
   >
     Friday, 21st April 2017
   </h1>
   <a
-    className="Link"
+    className="Link next"
     href="/2017/04/22"
     onClick={[Function]}
-  >
-    next
-  </a>
+  />
 </header>
 `;

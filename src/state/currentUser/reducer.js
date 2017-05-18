@@ -3,13 +3,15 @@ import {
   SIGN_IN_SUCCESS,
   SIGN_IN_FAILED,
   SIGN_OUT_SUCCESS,
-  FETCH_CURRENT_USER_BEGIN,
-  FETCH_CURRENT_USER_SUCCESS,
-  FETCH_CURRENT_USER_FAILED
+  CURRENT_USER_FETCH_BEGIN,
+  CURRENT_USER_FETCH_SUCCESS,
+  CURRENT_USER_FETCH_FAILED,
+  CURRENT_USER_SET_IS_AUTHENTICATED
 } from './actions'
 
 const initialState = {
   isLoading: false,
+  isAuthenticated: Boolean(window.localStorage.getItem('AUTH_TOKEN')),
   data: {}
 }
 
@@ -17,28 +19,41 @@ const signInSuccess = (state, user) => {
   return {
     ...state,
     isLoading: false,
+    isAuthenticated: true,
     data: user
   }
 }
 
 const signOutSuccess = (state) => {
-  return {...initialState}
+  return {
+    isLoading: false,
+    isAuthenticated: false,
+    data: {}
+  }
 }
 
 function currentUserReducer (state = initialState, action) {
   switch (action.type) {
     case SIGN_IN_BEGIN:
-    case FETCH_CURRENT_USER_BEGIN:
+    case CURRENT_USER_FETCH_BEGIN:
       return { ...state, isLoading: true }
     case SIGN_IN_SUCCESS:
-    case FETCH_CURRENT_USER_SUCCESS:
+    case CURRENT_USER_FETCH_SUCCESS:
       return signInSuccess(state, action.user)
     case SIGN_IN_FAILED:
-    case FETCH_CURRENT_USER_FAILED:
-      return { ...state, isLoading: false }
+    case CURRENT_USER_FETCH_FAILED:
+      return {
+        ...state,
+        isAuthenticated: false,
+        isLoading: false
+      }
     case SIGN_OUT_SUCCESS:
-      window.localStorage.removeItem('AUTH_TOKEN')
       return signOutSuccess(state)
+    case CURRENT_USER_SET_IS_AUTHENTICATED:
+      return {
+        ...state,
+        isAuthenticated: action.isAuthenticated
+      }
     default:
       return state
   }
@@ -46,8 +61,11 @@ function currentUserReducer (state = initialState, action) {
 
 export default currentUserReducer
 
-export const isAuthenticated = () => {
-  return Boolean(window.localStorage.getItem('AUTH_TOKEN'))
+// =============================================================================
+// SELECTORS
+// =============================================================================
+export const isAuthenticated = (state) => {
+  return state.currentUser.isAuthenticated
 }
 
 export const getCurrentUser = (state) => {

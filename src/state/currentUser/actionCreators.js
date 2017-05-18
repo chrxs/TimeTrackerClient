@@ -7,9 +7,9 @@ import {
   SIGN_IN_FAILED,
   SIGN_OUT_BEGIN,
   SIGN_OUT_SUCCESS,
-  FETCH_CURRENT_USER_BEGIN,
-  FETCH_CURRENT_USER_SUCCESS,
-  FETCH_CURRENT_USER_FAILED
+  CURRENT_USER_FETCH_BEGIN,
+  CURRENT_USER_FETCH_SUCCESS,
+  CURRENT_USER_FETCH_FAILED
 } from './actions.js'
 
 export function signInViaSlack () {
@@ -36,20 +36,21 @@ export function signInViaSlack () {
 export function signOut () {
   return (dispatch) => {
     dispatch({ type: SIGN_OUT_BEGIN })
+    window.localStorage.removeItem('AUTH_TOKEN')
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         dispatch({ type: SIGN_OUT_SUCCESS })
         resolve()
-      }, 1000)
+      })
     })
   }
 }
 
 export function fetchCurrentUser () {
   return (dispatch) => {
-    dispatch({ type: FETCH_CURRENT_USER_BEGIN })
+    dispatch({ type: CURRENT_USER_FETCH_BEGIN })
     return fetch('/api/v1/myself')
-      .then((user) => { dispatch({ type: FETCH_CURRENT_USER_SUCCESS, user }) })
-      .catch(() => { dispatch({ type: FETCH_CURRENT_USER_FAILED }) })
+      .then((user) => { dispatch({ type: CURRENT_USER_FETCH_SUCCESS, user }) })
+      .catch(() => { dispatch({ type: CURRENT_USER_FETCH_FAILED }) })
   }
 }

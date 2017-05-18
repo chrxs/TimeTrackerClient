@@ -4,9 +4,15 @@ import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProductio
 
 import currentUser from './currentUser'
 const { currentUserReducer } = currentUser
+import projectsReducer from 'state/projects/reducer'
+import daysReducer from 'state/days/reducer'
+import timeRecordsReducer from 'state/timeRecords/reducer'
 
 export const reducers = combineReducers({
-  currentUser: currentUserReducer
+  currentUser: currentUserReducer,
+  projects: projectsReducer,
+  days: daysReducer,
+  timeRecords: timeRecordsReducer
 })
 
 export const actions = {

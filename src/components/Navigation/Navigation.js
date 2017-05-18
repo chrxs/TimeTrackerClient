@@ -19,7 +19,7 @@ const Navigation = ({
           <NavButton to='/people' label='PEOPLE' />
         </li>
         <li>
-          <NavButton to='/projects' label='PROJECTS' />
+          <NavButton exact={false} to='/projects' label='PROJECTS' />
         </li>
         <li>
           <div className={styles.NavButtons}>

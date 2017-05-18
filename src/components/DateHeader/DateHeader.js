@@ -37,19 +37,15 @@ const DateHeader = ({
     <header className={styles.DateHeader}>
       <Link
         to={moment(date).subtract(1, interval).format(linkFormat)}
-        className={styles.Link}
-      >
-        prev
-      </Link>
+        className={[styles.Link, styles.previous].join(' ')}
+      />
       <h1 className={styles.DateHeaderTitle}>
         {moment(date).format(titleFormat)}
       </h1>
       <Link
         to={moment(date).add(1, interval).format(linkFormat)}
-        className={styles.Link}
-      >
-        next
-      </Link>
+        className={[styles.Link, styles.next].join(' ')}
+      />
     </header>
   )
 }

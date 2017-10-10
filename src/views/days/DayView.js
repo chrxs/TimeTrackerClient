@@ -1,20 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { pick } from 'lodash'
 import moment from 'moment'
 
-import * as currentUserSelectors from 'state/currentUser/reducer'
-import * as projectSelectors from 'state/projects/reducer'
+import * as userSelectors from 'state/users/reducer'
+import * as clientSelectors from 'state/clients/selectors'
 import * as daySelectors from 'state/days/reducer'
 import * as dayActions from 'state/days/actionCreators'
 
-import DateHeader from 'components/DateHeader'
+import ApplicationLayout from 'views/ApplicationLayout'
 import TimeRecordsList from 'components/TimeRecordsList'
 import TimeRecordsForm from 'components/TimeRecordsForm'
 
-import styles from './DayView.scss'
+import styles from './styles.scss'
+
+const DATE_FORMAT = 'YYYY-MM-DD'
 
 class DayView extends React.Component {
   constructor (props) {
@@ -56,13 +58,13 @@ class DayView extends React.Component {
 
   renderDayForm () {
     const [year, month, day] = this.props.date.split('-')
-    const { projects } = this.props
+    const { clients } = this.props
     const { timeRecords } = this.props.day
     return <TimeRecordsForm
       year={year}
       month={month}
       day={day}
-      projects={projects}
+      clients={clients}
       timeRecords={timeRecords}
       saveDay={this.saveDay}
     />
@@ -76,23 +78,39 @@ class DayView extends React.Component {
       <div>
         { this.props.day && this.renderTimeRecords() }
         { this.renderDayForm() }
+        <Link to={`${this.props.match.url}/edit`}>Edit</Link>
       </div>
     )
   }
 
   render () {
-    const [year, month, dayOfMonth] = this.props.date.split('-')
+    const date = moment(this.props.date, DATE_FORMAT)
+    const headerLeftActions = (
+      <Link
+        to={moment(date).subtract(1, 'day').format('/YYYY/MM/DD')}
+        className={styles.headerLink}
+      >
+        <i className='fa fa-angle-left' />
+      </Link>
+    )
+    const headerRightActions = (
+      <Link
+        to={moment(date).add(1, 'day').format('/YYYY/MM/DD')}
+        className={styles.headerLink}
+      >
+        <i className='fa fa-angle-right' />
+      </Link>
+    )
     return (
-      <div className={styles.DayView}>
-        <DateHeader
-          year={year}
-          month={month}
-          day={dayOfMonth}
-        />
+      <ApplicationLayout
+        title={date.format('dddd, Do MMMM YYYY')}
+        headerLeftActions={headerLeftActions}
+        headerRightActions={headerRightActions}
+      >
         <main className={styles.main}>
           { this.renderMain() }
         </main>
-      </div>
+      </ApplicationLayout>
     )
   }
 }
@@ -110,19 +128,18 @@ DayView.propTypes = {
   day: PropTypes.object,
   fetchDay: PropTypes.func.isRequired,
   saveDay: PropTypes.func.isRequired,
-  projects: PropTypes.array.isRequired
+  clients: PropTypes.array.isRequired,
+  match: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state, ownProps) => {
   const [year, month, dayOfMonth] = Object.values(pick(ownProps.match.params, ['year', 'month', 'day'])).map(v => parseInt(v, 10))
-  const date = !!year && !!month && !!dayOfMonth
-    ? moment(new Date(year, month - 1, dayOfMonth)).format('YYYY-MM-DD')
-    : moment().format('YYYY-MM-DD')
-  const user = currentUserSelectors.getCurrentUser(state)
+  const date = moment(new Date(year, month - 1, dayOfMonth)).format(DATE_FORMAT)
+  const user = userSelectors.getCurrentUser(state)
   return {
     date,
-    day: daySelectors.getDay(state, date, user.id),
-    projects: projectSelectors.getProjects(state)
+    day: daySelectors.getDay(state, user.id, date),
+    clients: clientSelectors.getClients(state)
   }
 }
 

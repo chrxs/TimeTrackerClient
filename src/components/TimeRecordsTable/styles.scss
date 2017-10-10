@@ -1,0 +1,63 @@
+.TimeRecordsTable {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.usersColumn {
+  background-color: #fff;
+  flex-basis: 80px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.dataColumn {
+  flex-grow: 1;
+  flex-shrink: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.cell {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 80px;
+  height: 80px;
+  text-align: center;
+  border-right: solid 1px #ccc;
+  border-bottom: solid 1px #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+
+  &:last-child {
+    border-right-width: 0;
+  }
+}
+
+.row:last-child .cell:last-child {
+  border-bottom-width: 0;
+}
+
+.cellDate {
+  height: 30px;
+}
+
+.TimeEntry {
+  background-color: limegreen;
+  border-radius: 1000px;
+  height: 40px;
+  width: 40px;
+}

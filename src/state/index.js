@@ -2,26 +2,21 @@ import { combineReducers, createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction'
 
-import currentUser from './currentUser'
-const { currentUserReducer } = currentUser
+import clientsReducer from 'state/clients/reducer'
 import projectsReducer from 'state/projects/reducer'
+import teamsReducer from 'state/teams/reducer'
+import usersReducer from 'state/users/reducer'
 import daysReducer from 'state/days/reducer'
 import timeRecordsReducer from 'state/timeRecords/reducer'
 
 export const reducers = combineReducers({
-  currentUser: currentUserReducer,
+  clients: clientsReducer,
   projects: projectsReducer,
+  teams: teamsReducer,
+  users: usersReducer,
   days: daysReducer,
   timeRecords: timeRecordsReducer
 })
-
-export const actions = {
-  ...currentUser.actions
-}
-
-export const actionCreators = {
-  ...currentUser.actionCreators
-}
 
 const composeEnhancers = composeWithDevTools({})
 
@@ -34,8 +29,7 @@ export const store = createStore(
 
 const state = {
   store,
-  reducers,
-  actions
+  reducers
 }
 
 export default state

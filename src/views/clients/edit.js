@@ -3,19 +3,19 @@ import PropTypes from 'prop-types'
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { fetchProject, updateProject } from 'state/projects/actionCreators'
-import { getProject } from 'state/projects/reducer'
+import { fetchClient, updateClient } from 'state/clients/actionCreators'
+import { getClient } from 'state/clients/selectors'
 
-import Header from 'components/Header'
+import ApplicationLayout from 'views/ApplicationLayout'
 import LoadingSpinner from 'components/LoadingSpinner'
 
-class ProjectsEditView extends React.Component {
+class ClientsEditView extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      isLoading: false,
+      isLoading: true,
       isSaving: false,
-      project: props.project || {}
+      client: props.client || {}
     }
 
     this.handleOnChange = this.handleOnChange.bind(this)
@@ -23,23 +23,25 @@ class ProjectsEditView extends React.Component {
   }
 
   componentDidMount () {
-    if (!this.props.project) {
-      this.setState({ isLoading: true })
-      this.props.fetchProject()
-        .then((project) => {
-          this.setState({
-            isLoading: false,
-            project
-          })
+    this.loadData()
+  }
+
+  loadData () {
+    this.setState({ isLoading: true })
+    this.props.fetchClient()
+      .then((client) => {
+        this.setState({
+          isLoading: false,
+          client
         })
-    }
+      })
   }
 
   handleOnChange (evt) {
     const { name, value } = evt.currentTarget
     this.setState({
-      project: {
-        ...this.state.project,
+      client: {
+        ...this.state.client,
         [name]: value
       }
     })
@@ -48,7 +50,7 @@ class ProjectsEditView extends React.Component {
   handleOnSubmit (evt) {
     evt.preventDefault()
     this.setState({ isSaving: true })
-    this.props.updateProject(this.state.project)
+    this.props.updateClient(this.state.client)
       .then(() => {
         this.setState({ isSaving: false })
         this.props.history.goBack()
@@ -56,56 +58,51 @@ class ProjectsEditView extends React.Component {
   }
 
   render () {
-    const { project, isLoading, isSaving } = this.state
-    if (isLoading || !project.id) {
-      return <LoadingSpinner
-        size={50}
-        strokeWidth={3}
-        centered
-      />
+    const { client, isLoading, isSaving } = this.state
+    if (isLoading) {
+      return <LoadingSpinner size={50} strokeWidth={3} centered />
     }
 
     return (
-      <div>
-        <Header title={`Edit ${project.name}`} />
+      <ApplicationLayout title={`Edit ${this.props.client.name}`}>
         { isSaving && <p>Saving...</p>}
         <form onSubmit={this.handleOnSubmit}>
           <input
             type='text'
             name='name'
-            value={project.name}
+            value={client.name}
             onChange={this.handleOnChange}
           />
           <button type='submit'>Update</button>
         </form>
-        <Link to='/projects'>Back</Link>
-      </div>
+        <Link to='/clients'>Back</Link>
+      </ApplicationLayout>
     )
   }
 }
 
-ProjectsEditView.displayName = 'ProjectsEditView'
+ClientsEditView.displayName = 'ClientsEditView'
 
-ProjectsEditView.propTypes = {
-  project: PropTypes.object,
-  fetchProject: PropTypes.func.isRequired,
-  updateProject: PropTypes.func.isRequired,
+ClientsEditView.propTypes = {
+  client: PropTypes.object,
+  fetchClient: PropTypes.func.isRequired,
+  updateClient: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    project: getProject(state, ownProps.match.params.id)
+    client: getClient(state, ownProps.match.params.id)
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fetchProject () {
-      return dispatch(fetchProject(ownProps.match.params.id))
+    fetchClient () {
+      return dispatch(fetchClient(ownProps.match.params.id))
     },
-    updateProject (project) {
-      return dispatch(updateProject(project))
+    updateClient (client) {
+      return dispatch(updateClient(client))
     }
   }
 }
@@ -114,5 +111,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(ProjectsEditView)
+  )(ClientsEditView)
 )

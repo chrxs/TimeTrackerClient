@@ -3,13 +3,12 @@ import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import * as currentUserActions from 'state/currentUser/actionCreators'
+import * as userActions from 'state/users/actionCreators'
 import SlackSignInButton from 'components/SlackSignInButton'
-import styles from './SignInView.scss'
+import styles from './styles.scss'
 
 const SignInView = ({
   history,
-  isLoading,
   signInViaSlack
 }) => {
   function handleOnClick () {
@@ -20,7 +19,6 @@ const SignInView = ({
     <div className={styles.SignInView}>
       <SlackSignInButton
         onClick={handleOnClick}
-        disabled={isLoading}
       />
     </div>
   )
@@ -30,20 +28,17 @@ SignInView.displayName = 'SignInView'
 
 SignInView.propTypes = {
   history: PropTypes.object.isRequired,
-  isLoading: PropTypes.bool.isRequired,
   signInViaSlack: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => {
-  return {
-    isLoading: state.currentUser.isLoading
-  }
+  return {}
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     signInViaSlack () {
-      return dispatch(currentUserActions.signInViaSlack())
+      return dispatch(userActions.signInViaSlack())
     }
   }
 }

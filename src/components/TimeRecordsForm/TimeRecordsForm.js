@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import TimeRecordField from './TimeRecordField'
+// import TimeRecordField from './TimeRecordField'
 
 class TimeRecordsForm extends React.Component {
   constructor (props) {
@@ -27,11 +27,11 @@ class TimeRecordsForm extends React.Component {
     timeRecords = timeRecords.map(timeRecord => {
       return {
         id: timeRecord.id,
-        projectId: timeRecord.project.id.toString(),
+        clientId: timeRecord.client.id.toString(),
         amount: timeRecord.amount.toString()
       }
     })
-    timeRecords.push({ projectId: '', amount: '0' })
+    timeRecords.push({ clienttId: '', amount: '0' })
     this.setState({ timeRecords })
   }
 
@@ -42,7 +42,7 @@ class TimeRecordsForm extends React.Component {
       year,
       month,
       day,
-      timeRecords: this.state.timeRecords.filter(timeRecord => Boolean(timeRecord.projectId) && timeRecord.amount > 0)
+      timeRecords: this.state.timeRecords.filter(timeRecord => Boolean(timeRecord.clientId) && timeRecord.amount > 0)
     })
   }
 
@@ -56,8 +56,8 @@ class TimeRecordsForm extends React.Component {
       ...this.state.timeRecords.slice(timeRecordIndex + 1)
     ]
     const lastTimeRecord = timeRecords[timeRecords.length - 1]
-    if (lastTimeRecord.projectId.length && lastTimeRecord.amount > 0) {
-      timeRecords.push({ projectId: '', amount: '0' })
+    if (lastTimeRecord.clientId.length && lastTimeRecord.amount > 0) {
+      timeRecords.push({ clientId: '', amount: '0' })
     }
     this.setState({ timeRecords })
   }
@@ -67,14 +67,15 @@ class TimeRecordsForm extends React.Component {
   }
 
   renderTimeRecordField (timeRecord, index) {
-    return <TimeRecordField
-      key={index}
-      index={index}
-      projectId={timeRecord.projectId}
-      amount={timeRecord.amount}
-      projects={this.props.projects}
-      onChange={this.handleOnChange}
-    />
+    return null
+    // return <TimeRecordField
+    //   key={index}
+    //   index={index}
+    //   clientId={timeRecord.clientId}
+    //   amount={timeRecord.amount}
+    //   projects={this.props.projects}
+    //   onChange={this.handleOnChange}
+    // />
   }
 
   render () {
@@ -93,7 +94,7 @@ TimeRecordsForm.propTypes = {
   year: PropTypes.string.isRequired,
   month: PropTypes.string.isRequired,
   day: PropTypes.string.isRequired,
-  projects: PropTypes.array.isRequired,
+  // clients: PropTypes.array.isRequired,
   timeRecords: PropTypes.array.isRequired,
   saveDay: PropTypes.func.isRequired
 }

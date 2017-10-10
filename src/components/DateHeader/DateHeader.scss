@@ -11,17 +11,19 @@
   padding: 0;
   height: 64px;
   border-bottom: solid 1px rgba(0,0,0,.2);
-
-  flex-grow: 0;
-  flex-shrink: 0;
 }
 
 .DateHeaderTitle {
-  font-family: 'Amatic SC', cursive;
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
-  font-size: 38px;
-  font-weight: 200;
+  font-size: 26px;
+  font-weight: 300;
+  flex-grow: 1;
+  flex-shrink: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .Link {
@@ -38,4 +40,7 @@
   line-height: 1;
   font-size: 40px;
   color: inherit;
+  flex-basis: 40px;
+  flex-grow: 0;
+  flex-shrink: 0;
 }

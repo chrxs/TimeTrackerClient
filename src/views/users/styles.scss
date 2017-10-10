@@ -1,0 +1,14 @@
+.Users {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.User {
+  border: solid 1px #ccc;
+  flex-basis: 100px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}

@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { createProject } from 'state/projects/actionCreators'
+import { createClient } from 'state/clients/actionCreators'
 
-import Header from 'components/Header'
+import ApplicationLayout from 'views/ApplicationLayout'
 
-class ProjectsNewView extends React.Component {
+class ClientsNewView extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -29,7 +29,7 @@ class ProjectsNewView extends React.Component {
   handleOnSubmit (evt) {
     evt.preventDefault()
     this.setState({ isSaving: true })
-    this.props.createProject({
+    this.props.createClient({
       name: this.state.name
     }).then(() => {
       this.setState({ isSaving: false })
@@ -41,8 +41,7 @@ class ProjectsNewView extends React.Component {
 
   render () {
     return (
-      <div>
-        <Header title='New Project' />
+      <ApplicationLayout title='New Client'>
         { this.state.isSaving && <p>Saving...</p>}
         <form onSubmit={this.handleOnSubmit}>
           <input
@@ -53,15 +52,15 @@ class ProjectsNewView extends React.Component {
           />
           <button type='submit'>Save</button>
         </form>
-      </div>
+      </ApplicationLayout>
     )
   }
 }
 
-ProjectsNewView.displayName = 'ProjectsNewView'
+ClientsNewView.displayName = 'ClientsNewView'
 
-ProjectsNewView.propTypes = {
-  createProject: PropTypes.func.isRequired,
+ClientsNewView.propTypes = {
+  createClient: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired
 }
 
@@ -71,8 +70,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createProject (project) {
-      return dispatch(createProject(project))
+    createClient (client) {
+      return dispatch(createClient(client))
     }
   }
 }
@@ -81,5 +80,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(ProjectsNewView)
+  )(ClientsNewView)
 )

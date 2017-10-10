@@ -7,8 +7,8 @@ import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
-import ApplicationLayout from 'views/ApplicationLayout'
-import SignInView from 'views/SignInView'
+import SignInView from 'views/SignIn/SignInView'
+import AppRoutes from 'views/AppRoutes'
 
 import { store } from 'state'
 
@@ -18,7 +18,7 @@ const App = () => {
       <BrowserRouter>
         <Switch>
           <Route exact path='/signin' component={SignInView} />
-          <Route path='/' component={ApplicationLayout} />
+          <Route path='/' component={AppRoutes} />
         </Switch>
       </BrowserRouter>
     </Provider>

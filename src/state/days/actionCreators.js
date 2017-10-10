@@ -1,5 +1,6 @@
 import { compact } from 'lodash'
 import { normalize } from 'normalizr'
+import queryString from 'query-string'
 
 import * as schema from 'state/schema'
 import fetch from 'services/fetch'
@@ -19,9 +20,29 @@ export function fetchDays (year, month, day) {
     dispatch({ type: DAYS_FETCH_BEGIN })
     return fetch(`/api/v1/${dateString}`)
       .then((response) => {
+        if (response) {
+          dispatch({
+            type: DAYS_FETCH_SUCCESS,
+            response: normalize(response, schema.days)
+          })
+        }
+        return response
+      })
+      .catch(() => {
+        dispatch({ type: DAYS_FETCH_FAILED })
+      })
+  }
+}
+
+export function fetchDaysForUser (userId, start, end) {
+  const qs = queryString.stringify({ start, end })
+  return (dispatch) => {
+    dispatch({ type: DAYS_FETCH_BEGIN })
+    return fetch(`/api/v1/users/${userId}/days?${qs}`)
+      .then((response) => {
         dispatch({
           type: DAYS_FETCH_SUCCESS,
-          response: normalize(response, schema.dayList)
+          response: normalize(response, schema.days)
         })
         return response
       })
@@ -45,8 +66,7 @@ export function saveDay (data = {}) {
         response: normalize(response, schema.day)
       })
       return response
-    })
-    .catch(() => {
+    }).catch(() => {
       dispatch({ type: DAYS_SAVE_FAILED })
     })
   }

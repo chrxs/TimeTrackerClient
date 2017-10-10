@@ -1,0 +1,39 @@
+.clientsList {
+}
+
+.clientsListItem {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin: 0 0 20px;
+  padding: 0 0 20px;
+  border-bottom: solid 1px #ccc;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.clientsListAvatarContainer {
+  flex-basis: 80px;
+  flex-grow: 0;
+  flex-shrink: 0;
+
+}
+
+.clientsListDetailsContainer {
+  flex-grow: 1;
+  flex-shrink: 1;
+  margin-left: 20px;
+}
+
+.clientsListAvatar {
+  background: #ccc;
+  height: 80px;
+}
+
+.projects {}
+
+.project {
+  border-bottom: solid 1px #ccc;
+}

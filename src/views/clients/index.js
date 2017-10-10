@@ -8,6 +8,7 @@ import { fetchAllClients } from 'state/clients/actionCreators'
 
 import ApplicationLayout from 'views/ApplicationLayout'
 import LoadingSpinner from 'components/LoadingSpinner'
+import { ClientsList } from 'components/ClientsList'
 
 import styles from './styles'
 
@@ -32,29 +33,7 @@ class ClientsIndexView extends React.Component {
   renderContent () {
     return (
       <main className={styles.main}>
-        <div className={styles.clientsList}>
-          {this.props.clients.map((client) => (
-            <div key={client.id} className={styles.clientsListItem}>
-              <div className={styles.clientsListAvatarContainer}>
-                <Link to={`/clients/${client.id}`}>
-                  <div className={styles.clientsListAvatar} />
-                </Link>
-              </div>
-              <div className={styles.clientsListDetailsContainer}>
-                <Link to={`/clients/${client.id}`}>{client.name}</Link>
-                <Link to={`/clients/${client.id}/edit`}>edit</Link>
-
-                <div className={styles.projects}>
-                  {client.projects.map((project) => (
-                    <div className={styles.project} key={project.id}>
-                      {project.name}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ClientsList clients={this.props.clients} />
       </main>
     )
   }
